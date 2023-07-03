@@ -8,6 +8,3 @@
 <script setup lang="ts">
 import MobileNavigation from '@/components/MobileNavigation.vue';
 </script>
-
-<style scoped>
-</style>
