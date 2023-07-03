@@ -4,10 +4,11 @@
       <div class="ticker-card__row">
         <div
           v-if="logo"
-          class="ticker-card__logo">{{ logo }}</div>
+          class="ticker-card__logo">
+          {{ logo }}</div>
         <div class="ticker-card__ticker">{{ ticker }}</div>
       </div>
-      <div class="ticker-card__row"> 
+      <div class="ticker-card__row">
         <div class="ticker-card__name">{{ companyName }}</div>
       </div>
     </div>
@@ -46,6 +47,7 @@ interface IProps {
     companyName: string
     changePriceInPoints: number | null
     changePriceInPercents: number | null
+    minPriceStep: number | null
 }
 
 const props = defineProps<IProps>();
@@ -57,6 +59,7 @@ const {
   companyName,
   changePriceInPoints,
   changePriceInPercents,
+  minPriceStep,
 } = toRefs(props);
 
 const priceClasses = ref({

@@ -4,6 +4,7 @@ export interface ITickerResponse {
     name: string
     chg: number | null
     pcp: number | null
+    min_step: number | null
 }
 
 export interface ITicker {
@@ -12,6 +13,7 @@ export interface ITicker {
     companyName: string
     changePriceInPoints: number | null
     changePriceInPercents: number | null
+    minPriceStep: number | null
 }
 
 export interface ITickers {
