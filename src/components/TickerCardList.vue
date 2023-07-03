@@ -30,6 +30,16 @@ watch(() => isOpen.value, (isOpen) => {
   }
 });
 
+const dictionary = {
+  ticker: 'c',
+  price: 'ltp',
+  companyName: 'name',
+  changePriceInPoints: 'chg',
+  changePriceInPercents: 'pcp',
+};
+const serverNames = Object.values(dictionary);
+const clientNames = Object.keys(dictionary);
+
 watch(() => messageEvent.value, (response) => {
   const message = JSON.parse(response.data);
 
@@ -39,18 +49,14 @@ watch(() => messageEvent.value, (response) => {
 
   const tickerData: ITickerResponse = message[1];
 
-  if (tickerData?.name) {
-    tickers[tickerData.c] = {
-      ticker: tickerData.c,
-      price: tickerData.ltp,
-      companyName: tickerData.name,
-      changePriceInPoints: tickerData.chg,
-      changePriceInPercents: tickerData.pcp,
-    };
-  } else if (tickerData?.chg) {
-    tickers[tickerData.c].price = tickerData.ltp;
-    tickers[tickerData.c].changePriceInPoints = tickerData.chg;
-    tickers[tickerData.c].changePriceInPercents = tickerData.pcp;
+  for (const item in tickerData) {
+    const index = serverNames.indexOf(item);
+    if (serverNames.includes(item)) {
+      if (!tickers[tickerData.c]) {
+        tickers[tickerData.c] = {};
+      }
+      tickers[tickerData.c][clientNames[index]] = tickerData[item];
+    }
   }
 });
 </script>
